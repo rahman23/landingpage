@@ -1,0 +1,185 @@
+$colors: (
+  main: #173f5f,
+  türkis: rgb(47, 150, 163),
+  secondary: #3caea3,
+  third: #2e8179,
+  light: rgba(177, 177, 177, 0.199),
+  dark: #1e1e1e,
+  smoke: whitesmoke,
+  transparent: rgba(255, 255, 255, 0)
+);
+
+$padding-s: 5px;
+$padding-m: 20px;
+$padding-l: 40px;
+
+$margin-s: 5px;
+$margin-m: 15px;
+
+$border: 10px;
+
+@function color($colorName) {
+  @return map-get($colors, $colorName);
+}
+
+@mixin large {
+  @media (min-width: 1100px) {
+    @content;
+  }
+}
+@mixin small {
+  @media (max-width: 370px) {
+    //Smaller than IPhone x
+    @content;
+  }
+}
+
+body,
+html {
+  height: 100%;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+
+  #bg {
+    clip-path: polygon(100% 0, 100% 70%, 60% 100%, 0 100%, 0 0);
+    background: linear-gradient(color(türkis), color(main));
+    // background-color: color(main);
+    padding: $padding-s;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    @include large {
+      clip-path: polygon(0 0, 90% 0, 60% 100%, 0 100%);
+    }
+  }
+
+  main {
+    @include large {
+      display: grid;
+      grid-template-columns: 50% auto;
+      grid-template-areas: "info product";
+    }
+
+    section#product {
+      padding: $padding-s;
+      border-radius: $border;
+      @include large {
+        grid-area: product;
+        height: fit-content;
+        align-self: center;
+        margin: 2rem;
+      }
+
+      #bg-product {
+        background-image: url(../img/laptop.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      ul {
+        text-align: center;
+        font-size: 0.9rem;
+        list-style-type: none;
+        padding: $padding-m * 3;
+        margin: 0;
+        li {
+          margin-bottom: $margin-s;
+        }
+        strong {
+          display: inline-block;
+          color: color(main);
+        }
+      }
+    }
+    section#info {
+      color: color(dark);
+      padding: $padding-s;
+      text-align: center;
+      @include large {
+        grid-area: info;
+        margin: 4rem 0 0 4rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin: $margin-m;
+        color: color(main);
+        @include large {
+          font-size: 3.7rem;
+        }
+        @include small {
+          margin: 0;
+        }
+      }
+      p {
+        font-size: 0.9rem;
+        padding: $padding-s;
+        @include large {
+          font-size: 1.3rem;
+          text-align: left;
+          line-height: 2rem;
+          margin-bottom: $margin-m;
+        }
+        @include small {
+          font-size: 0.7rem;
+          margin: 0;
+          padding: $padding-s;
+        }
+      }
+      .icons i {
+        margin: $margin-s;
+        font-size: 2rem;
+        @include large {
+          margin: $margin-m * 2;
+          font-size: 5rem;
+        }
+        @include small {
+          font-size: 1.7rem;
+        }
+      }
+      .buttons {
+        padding: 0;
+      }
+      .btn {
+        border-radius: $border;
+        text-decoration: none;
+        margin: $margin-s;
+        line-height: 7rem;
+        padding: $padding-s;
+        font-size: 0.9rem;
+        font-weight: 550;
+        .btn i {
+          font-size: 4px;
+        }
+        @include large {
+          font-size: 1.2rem;
+          padding: $padding-s * 2;
+        }
+        @include small {
+          padding: $padding-s;
+        }
+      }
+      .btn1 {
+        background-color: color(secondary);
+        color: white;
+        border: 1px solid white;
+      }
+      .btn1:hover {
+        background-color: color(third);
+      }
+      .btn2 {
+        color: white;
+        background-color: color(transparent);
+        border: 1px solid white;
+      }
+      .btn2:hover {
+        background-color: white;
+        color: color(dark);
+        border: 1px solid color(primary);
+      }
+    }
+  }
+}
