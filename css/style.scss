@@ -24,7 +24,7 @@ $border: 10px;
 }
 
 @mixin large {
-  @media (min-width: 1100px) {
+  @media (min-width: 1250px) {
     @content;
   }
 }
@@ -84,8 +84,12 @@ body {
         text-align: center;
         font-size: 0.9rem;
         list-style-type: none;
-        padding: $padding-m * 3;
+        padding: $padding-m*2;
         margin: 0;
+        @include large {
+          padding: $padding-m*2;
+          font-size: 1.3rem;
+        }
         li {
           margin-bottom: $margin-s;
         }
@@ -102,16 +106,14 @@ body {
       @include large {
         grid-area: info;
         text-align: left;
-        margin: 4rem 0 0 4rem;
+        margin: 3rem 0 0 3rem;
       }
-
       h1 {
         font-size: 2rem;
         margin: $margin-m;
-        color: color(main);
-        
+        color: color(main);        
         @include large {
-          font-size: 3.7rem;         
+          font-size: 3.5rem;         
           margin:0;
         }
         @include small {
@@ -119,13 +121,15 @@ body {
         }
       }
       p {
-        font-size: 0.9rem;
+        font-size: 1rem;
         padding: $padding-s;
+        
         @include large {
-          font-size: 1.3rem;         
-          line-height: 2rem;
-          margin-bottom: $margin-s;
-          padding: 0;
+          font-size: 1.5rem;  
+                
+          line-height: 2.5rem;
+          margin: $margin-s 0;
+          
         }
         @include small {
           font-size: 0.7rem;
@@ -137,8 +141,8 @@ body {
         margin: $margin-s;
         font-size: 2rem;
         @include large {
-          margin: $margin-l;
-          font-size: 3rem;
+          margin: $margin-m $margin-m;
+          font-size: 5rem;
         }
         @include small {
           font-size: 1.7rem;
